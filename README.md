@@ -9,3 +9,5 @@ sklearn
 python 3.7  
 
 
+# Usage
+python CircMAN.py [-h] [--protein <data_file>] 
