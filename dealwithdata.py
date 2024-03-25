@@ -176,9 +176,6 @@ def dealwithCircRNA2Vec(seq):
     dataX = np.array(dataX)
     return dataX[-1]
 
-# seq='AGGCGTGGCTACTGCGGCTGGAGCTGCGATGAGACTCGGAACTCCTCGTCTTACTTTGTGCTCCATGTTTTGTTTTTGTATTTTGGTTTGTAAATTTGTAG'
-# x = dealwithCircRNA2Vec(seq.replace('T', 'U'))
-# print(x)
 
 #secondary structu with seq
 coden_dict2 = {'AF': 0, 'AT': 1, 'AI': 2, 'AH': 3, 'AM': 4, 'AS': 5, 'CF': 6, 'CT': 7, 'CI': 8, 'CH': 9, 'CM': 10,
@@ -213,15 +210,11 @@ def dealwithdata(protein):
                     prob_NCP = NCP(line) #NCP
                     probStr_VecNCP = np.column_stack((probStr_Vec,prob_NCP))
                     prob_ND = nd(line) #ND
-                    probStr_VecNDCP = np.column_stack((probStr_VecNCP, prob_ND))#2个
+                    probStr_VecNDCP = np.column_stack((probStr_VecNCP, prob_ND))
                     prob_DPCP = dpcp(line)  #DPCP
-                    prob_VecNDPCP = np.column_stack((probStr_VecNDCP, prob_DPCP))#3
-                    kmer1 = coden(line.strip(), 1, tris1)
-                    kmer2 = coden(line.strip(), 2, tris2)
-                    kmer3 = coden1(line.strip())
-                    Kmer = np.hstack((kmer1, kmer2, kmer3))
-                    Feature_Encoding = np.column_stack((prob_VecNDPCP, Kmer))#3+1
-                    # Feature_Encoding = np.column_stack((probStr, Kmer))#3+1
+                    prob_VecNDPCP = np.column_stack((probStr_VecNDCP, prob_DPCP))
+                    kmer = coden1(line.strip())
+                    Feature_Encoding = np.column_stack((prob_VecNDPCP, Kmer))
                     dataX.append(Feature_Encoding.tolist())
                     dataY.append([0,1])
                     useful = ''
@@ -242,15 +235,11 @@ def dealwithdata(protein):
                     prob_NCP = NCP(line) #NCP
                     probStr_VecNCP = np.column_stack((probStr_Vec,prob_NCP))
                     prob_ND = nd(line) #ND
-                    probStr_VecNDCP = np.column_stack((probStr_VecNCP, prob_ND))#2个
+                    probStr_VecNDCP = np.column_stack((probStr_VecNCP, prob_ND))
                     prob_DPCP = dpcp(line)  #DPCP
-                    prob_VecNDPCP = np.column_stack((probStr_VecNDCP, prob_DPCP))#3
-                    kmer1 = coden(line.strip(), 1, tris1)
-                    kmer2 = coden(line.strip(), 2, tris2)
-                    kmer3 = coden1(line.strip())
-                    Kmer = np.hstack((kmer1, kmer2, kmer3))
-                    Feature_Encoding = np.column_stack((prob_VecNDPCP, Kmer))#3+1
-                    # Feature_Encoding = np.column_stack((probStr, Kmer))#3+1
+                    prob_VecNDPCP = np.column_stack((probStr_VecNDCP, prob_DPCP))
+                    kmer = coden1(line.strip())
+                    Feature_Encoding = np.column_stack((prob_VecNDPCP, Kmer))
                     dataX.append(Feature_Encoding.tolist())
                     dataY.append([0,1])
                     useful = ''
