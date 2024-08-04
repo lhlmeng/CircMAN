@@ -11,3 +11,6 @@ python 3.7
 
 # Usage
 python CircMAN.py [-h] [--protein <data_file>] 
+
+# Contact
+222050266@hdu.edu.cn
